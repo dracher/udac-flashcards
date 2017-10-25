@@ -1,6 +1,6 @@
 import { AsyncStorage } from "react-native";
 
-export const DECKS_KEY = "udacx-flashcards:decks";
+export const DECKS_KEY = "udac-flashcards:decks";
 
 export async function getDecks() {
   let decks = await fetchDecks();
