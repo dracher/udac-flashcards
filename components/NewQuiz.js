@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 import {
   View,
   Text,
@@ -7,30 +7,31 @@ import {
   ScrollView,
   TouchableOpacity,
   KeyboardAvoidingView
-} from "react-native";
-import { connect } from "react-redux";
-import { addCardToDeck } from "../actions";
-import { black, purple, white } from "../helpers/colors";
+} from "react-native"
+import { connect } from "react-redux"
+import { addCardToDeck } from "../actions"
+
+import styles from "./NewQuiz.style"
 
 class NewQuiz extends Component {
   state = {
     question: "",
     answer: ""
-  };
+  }
 
   submit = () => {
-    const { question, answer } = this.state;
-    const title = this.props.navigation.state.params.title;
-    const quizzCard = { question, answer };
+    const { question, answer } = this.state
+    const title = this.props.navigation.state.params.title
+    const quizzCard = { question, answer }
     if (question !== "" && answer !== "") {
-      this.props.addCardToDeck(title, quizzCard);
-      this.props.navigation.goBack();
-      this.setState({ question: "", answer: "" });
+      this.props.addCardToDeck(title, quizzCard)
+      this.props.navigation.goBack()
+      this.setState({ question: "", answer: "" })
     }
-  };
+  }
 
   render() {
-    const title = this.props.navigation.state.params.title;
+    const title = this.props.navigation.state.params.title
 
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -53,60 +54,14 @@ class NewQuiz extends Component {
           </TouchableOpacity>
         </KeyboardAvoidingView>
       </ScrollView>
-    );
+    )
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: white
-  },
-  addCard: {
-    fontSize: 42,
-    fontWeight: "bold",
-    marginBottom: 40
-  },
-  textBoxLabel: {
-    fontWeight: "bold"
-  },
-  inputBox: {
-    marginBottom: 20,
-    padding: 10,
-    width: 330,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: black,
-    backgroundColor: white
-  },
-  submitBtn: {
-    marginTop: 30,
-    marginBottom: 20,
-    borderRadius: 2,
-    borderWidth: 1,
-    backgroundColor: purple,
-    paddingVertical: 20,
-    paddingHorizontal: 60,
-    height: 45,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  submitBtnText: {
-    color: white,
-    fontSize: 20,
-    textAlign: "center"
-  },
-  contentContainer: {
-    paddingVertical: 50
-  }
-});
 
-function mapDispatcToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     addCardToDeck: (title, quiz) => dispatch(addCardToDeck(title, quiz))
-  };
+  }
 }
 
-export default connect(null, mapDispatcToProps)(NewQuiz);
+export default connect(null, mapDispatchToProps)(NewQuiz)

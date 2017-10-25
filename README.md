@@ -25,3 +25,13 @@ $> yarn start
 ```
 $> make start
 ```
+
+## Expo
+
+the easiest way run application is with [expo](https://expo.io/), please follow the instruction.
+
+## Contributing
+Pull Request is always welcomed~
+
+## License
+The source code is made available under the [BSD 3-clause license](LICENSE). Some of the dependencies are licensed differently, with the MIT license, for example.
