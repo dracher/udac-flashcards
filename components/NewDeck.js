@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 import {
   View,
   Text,
@@ -7,25 +7,27 @@ import {
   ScrollView,
   TouchableOpacity,
   KeyboardAvoidingView
-} from "react-native"
-import { saveDeckTitle } from "../actions"
-import { connect } from "react-redux"
+} from "react-native";
+import { saveDeckTitle } from "../actions";
+import { connect } from "react-redux";
 
-import styles from "./NewDeck.style"
+import styles from "./NewDeck.style";
 
 class NewDeck extends Component {
   state = {
     title: ""
-  }
+  };
 
   submit = () => {
-    title = this.state.title
+    title = this.state.title;
     if (title !== "") {
-      this.props.saveDeckTitle(title)
-      this.props.navigation.navigate("Decks")
-      this.setState({ title: "" })
+      this.props
+        .saveDeckTitle(title)
+        .then(() => this.props.navigation.navigate("DeckView", { title }));
+
+      this.setState({ title: "" });
     }
-  }
+  };
 
   render() {
     return (
@@ -45,14 +47,14 @@ class NewDeck extends Component {
           </TouchableOpacity>
         </KeyboardAvoidingView>
       </ScrollView>
-    )
+    );
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     saveDeckTitle: title => dispatch(saveDeckTitle(title))
-  }
+  };
 }
 
-export default connect(null, mapDispatchToProps)(NewDeck)
+export default connect(null, mapDispatchToProps)(NewDeck);

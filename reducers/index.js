@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { RECEIVE_DECKS } from "../actions";
+import { RECEIVE_DECKS } from "../actions/types";
 
 function decks(state = {}, action) {
   switch (action.type) {
